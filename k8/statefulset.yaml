@@ -45,4 +45,3 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
-  # Removed volumeClaimTemplates to avoid storage issues
