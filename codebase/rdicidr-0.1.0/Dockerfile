@@ -21,3 +21,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"] 
+#CMD ["nginx", "-g", "daemon off;"]
+#CMD ["sh", "-c", "envsubst '$$API_URL' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
