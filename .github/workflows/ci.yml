@@ -1,0 +1,38 @@
+name: CI pipeline
+
+on: 
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: codebase/rdicidr-0.1.0/package-lock.json
+
+      - name: Install dependencies
+        working-directory: codebase/rdicidr-0.1.0
+        run: npm install --ignore-engines
+
+      - name: Run linter (ESLint)
+        working-directory: codebase/rdicidr-0.1.0
+        run: npm run lint
+
+      - name: Run formatter (Prettier)
+        working-directory: codebase/rdicidr-0.1.0
+        run: npm run prettier
