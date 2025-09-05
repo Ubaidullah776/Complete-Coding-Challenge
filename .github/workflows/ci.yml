@@ -35,7 +35,7 @@ jobs:
 
          - name: Run formatter (Prettier)
            working-directory: codebase/rdicidr-0.1.0
-           run: npm run format:check
+           run: npm run prettier
             
          - name: Run tests (Jest)
            working-directory: codebase/rdicidr-0.1.0
