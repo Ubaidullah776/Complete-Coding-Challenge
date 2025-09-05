@@ -1,4 +1,4 @@
-FROM node:15-alpine as builder
+FROM node:15-alpine as builder  
 
 WORKDIR /app
 
@@ -6,9 +6,9 @@ COPY package*.json ./
 
 RUN npm install --only=production --ignore-engines
 
-COPY  . .
+COPY . .
 
-RUN npm run builder
+RUN npm run build
 
 FROM nginx:alpine
 
